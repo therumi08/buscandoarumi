@@ -99,22 +99,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             var statusButton = document.getElementById('statusButton');
 
-            // Función para actualizar el estado del botón basado en localStorage
-            function actualizarEstado() {
-                var estado = localStorage.getItem('estadoCasaRumi') || 'CERRADO';
-                if (estado === 'ABIERTO') {
-                    statusButton.textContent = 'ABIERTO';
-                    statusButton.classList.remove('btn-danger');
-                    statusButton.classList.add('btn-success');
-                } else {
-                    statusButton.textContent = 'CERRADO';
-                    statusButton.classList.remove('btn-success');
-                    statusButton.classList.add('btn-danger');
-                }
+            // Función para obtener el estado desde la API
+            function obtenerEstado() {
+                fetch('/api/getStatus')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.estado === 'ABIERTO') {
+                            statusButton.textContent = 'ABIERTO';
+                            statusButton.classList.remove('btn-danger');
+                            statusButton.classList.add('btn-success');
+                        } else {
+                            statusButton.textContent = 'CERRADO';
+                            statusButton.classList.remove('btn-success');
+                            statusButton.classList.add('btn-danger');
+                        }
+                    });
             }
 
-            // Actualizar el estado del botón al cargar la página
-            actualizarEstado();
+            // Obtener el estado al cargar la página
+            obtenerEstado();
 
             // Evento para el botón de estado
             statusButton.addEventListener('click', function() {
@@ -124,6 +127,7 @@
     </script>
 </body>
 </html>
+
 
 
 
