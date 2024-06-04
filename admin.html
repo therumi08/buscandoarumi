@@ -86,7 +86,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Script para cambiar el estado del botón -->
+    <!-- Script para cambiar el estado del botón y enviar un mensaje -->
     <script>
         function changeState() {
             var button = document.getElementById('statusButton');
@@ -99,9 +99,13 @@
                 button.classList.remove('btn-success');
                 button.classList.add('btn-danger');
             }
+
+            // Enviar un mensaje a index.html con el nuevo estado del botón
+            window.parent.postMessage({ type: 'estadoBoton', value: button.textContent }, '*');
         }
     </script>
 </body>
 </html>
+
 
 
