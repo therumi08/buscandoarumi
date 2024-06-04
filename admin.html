@@ -79,6 +79,39 @@
             outline: none;
             box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
         }
+        .admin-panel {
+            display: block;
+            margin-top: 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .admin-panel:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        .admin-panel h2 {
+            font-size: 1.75rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .admin-panel button {
+            font-size: 1.25rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .admin-panel button:hover {
+            transform: scale(1.05);
+        }
+        .admin-panel button:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -88,16 +121,21 @@
         <p>Casa Rumi</p>
         <button id="statusButton" class="btn btn-lg">Cargando...</button>
     </div>
+    <div class="admin-panel">
+        <h2>Panel de Administración</h2>
+        <button id="adminButton" class="btn btn-lg btn-primary">Cambiar Estado</button>
+    </div>
 
     <!-- Importar jQuery y Bootstrap JS a través de CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Script para manejar el botón de estado -->
+    <!-- Script para manejar el botón de estado y el panel de administración -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var statusButton = document.getElementById('statusButton');
+            var adminButton = document.getElementById('adminButton');
 
             // Función para actualizar el estado del botón basado en localStorage
             function actualizarEstado() {
@@ -116,6 +154,16 @@
             // Actualizar el estado del botón al cargar la página
             actualizarEstado();
 
+            // Función para cambiar el estado
+            function cambiarEstado() {
+                var estado = statusButton.textContent === 'CERRADO' ? 'ABIERTO' : 'CERRADO';
+                localStorage.setItem('estadoCasaRumi', estado);
+                actualizarEstado();
+            }
+
+            // Evento para el botón de administración
+            adminButton.addEventListener('click', cambiarEstado);
+
             // Evento para el botón de estado
             statusButton.addEventListener('click', function() {
                 alert('No eres rumi');
@@ -124,9 +172,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-    
