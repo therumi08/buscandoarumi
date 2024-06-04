@@ -99,26 +99,8 @@
                 button.classList.remove('btn-success');
                 button.classList.add('btn-danger');
             }
-            // Guardar el estado del botón en localStorage
-            localStorage.setItem('estadoBoton', button.textContent);
-            // Enviar una solicitud a la API para actualizar el estado en index.html
-            fetch('/api/updateButtonState', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ state: button.textContent })
-            })
-
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al actualizar el estado del botón');
-                }
-                return response.json();
-            })
-            .then(data => console.log('Estado actualizado correctamente:', data))
-            .catch(error => console.error('Error:', error));
         }
     </script>
 </body>
 </html>
+
