@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Rumi - Entra para saber si casa rumi esta disponible</title>
+
+    <!-- Metadatos avanzados -->
+    <meta name="description" content="La APP perfecta para saber si rumi esta en casa">
+    <meta name="keywords" content="StatusCheck, estado de negocios, abiertos o cerrados, horarios de apertura, locales, tiendas">
+    <meta name="author" content="RomanianWebServices">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ffffff">
+    
+
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/logo2.jpeg" type="image/x-icon">
+    
+    <!-- Importar fuentes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Importar Bootstrap a través de CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6e44ff, #b06ab3);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 700;
+        }
+        p {
+            margin-bottom: 2.5rem;
+            font-size: 1.25rem;
+            color: #555;
+        }
+        .btn {
+            font-size: 1.5rem;
+            padding: 0.75rem 2.5rem;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <img src="./img/logo2.jpeg" alt="Logo" class="logo">
+    <div class="container">
+        <h1>StatusCheck</h1>
+        <p>Casa Rumi</p>
+        <button id="statusButton" class="btn btn-lg btn-danger">CERRADO</button>
+    </div>
+
+    <!-- Importar jQuery y Bootstrap JS a través de CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script para cambiar el estado del botón -->
+    <script>
+        document.getElementById('statusButton').addEventListener('click', function() {
+            var button = this;
+            if (button.textContent === 'CERRADO') {
+                button.textContent = 'ABIERTO';
+                button.classList.remove('btn-danger');
+                button.classList.add('btn-success');
+            } else {
+                button.textContent = 'CERRADO';
+                button.classList.remove('btn-success');
+                button.classList.add('btn-danger');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+    
