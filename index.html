@@ -25,21 +25,12 @@
 
     <style>
         body, html {
-            height: 100%;
-            margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #6e44ff, #b06ab3);
             font-family: 'Montserrat', sans-serif;
-        }
-        .logo {
-            width: 120px;
-            height: auto;
-            margin-bottom: 5rem;
-            border-radius: 50%;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .container {
             text-align: center;
@@ -116,7 +107,6 @@
 </head>
 <body>
 
-    <img src="./img/logo2.jpeg" alt="Logo" class="logo">
 
     <div class="container2">
         <div class="punto-verde"></div>
@@ -126,13 +116,16 @@
     <div class="container">
         <button id="statusButton" class="btn btn-lg btn-success" onclick="showAlert()">ABIERTO</button><br><br>
         <button id="statusButton" class="btn btn-lg btn-warning" onclick="window.location.href='https://api.whatsapp.com/send/?phone=+34683249330&text=Yee%20loco,%20estas%20a%20casa?'">Enviar WhatsApp</button>
-        <br><br>
+    </div>
+    <br> 
+    <div class="container">
+
         <h1>Tiempo en Benicarló</h1>
         <div id="weather" class="weather-info">
             <p>Cargando el tiempo...</p>
         </div>
+
     </div>
-  
 
     <!-- Importar jQuery y Bootstrap JS a través de CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
