@@ -43,6 +43,8 @@
         }
         .container {
             text-align: center;
+            display: flex;
+            align-items: center;
             background: rgba(255, 255, 255, 0.85);
             padding: 3rem;
             border-radius: 20px;
@@ -74,13 +76,31 @@
             outline: none;
             box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
         }
-        @keyframes parpadeo {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .punto-verde {
+            width: 15px;
+            height: 15px;
+            background-color: green;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 10px green;
+            animation: parpadeo 1.5s infinite ease-in-out;
         }
 
-        .parpadeo {
-            animation: parpadeo 1s infinite;
+        @keyframes parpadeo {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 10px green;
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+                box-shadow: 0 0 20px lightgreen;
+            }
+        }
+
+        p {
+            margin: 0;
         }
     </style>
 </head>
@@ -89,7 +109,8 @@
     <img src="./img/logo2.jpeg" alt="Logo" class="logo">
 
     <div class="container">
-        <p><span class="parpadeo">🟢</span> Todos los servicios funcionan con normalidad</p>
+        <div class="punto-verde"></div>
+        <p>Todos los servicios funcionan con normalidad</p>
     </div>
     <br>
     <div class="container">
