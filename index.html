@@ -124,7 +124,7 @@
     </div>
     <br>
     <div class="container">
-        <button id="statusButton" class="btn btn-lg btn-success">ABIERTO</button>
+        <button id="statusButton" class="btn btn-lg btn-success" onclick="showAlert()">ABIERTO</button>
     </div>
 
     <!-- Importar jQuery y Bootstrap JS a través de CDN -->
@@ -133,27 +133,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        function actualizarEstado() {
-            fetch('/estado.json')
-                .then(response => response.json())
-                .then(data => {
-                    const button = document.getElementById('statusButton');
-                    button.textContent = data.estado;
-                    if (data.estado === 'CERRADO') {
-                        button.classList.remove('btn-success');
-                        button.classList.add('btn-danger');
-                    } else {
-                        button.classList.remove('btn-danger');
-                        button.classList.add('btn-success');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al cargar el estado:', error);
-                });
+        function showAlert() {
+            alert("¡No eres rumi para tocar esto!");
         }
-
-        window.onload = actualizarEstado;
     </script>
+    <!-- Agrega este script al final de tu archivo HTML -->
+<script>
+    // Escucha los mensajes enviados desde otras páginas
+    window.addEventListener('message', function(event) {
+        // Verifica que el mensaje sea del tipo correcto
+        if (event.data.type === 'estadoBoton') {
+            // Actualiza el estado del botón
+            var button = document.getElementById('statusButton');
+            button.textContent = event.data.value;
+            if (event.data.value === 'CERRADO') {
+                button.classList.remove('btn-success');
+                button.classList.add('btn-danger');
+            } else {
+                button.classList.remove('btn-danger');
+                button.classList.add('btn-success');
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
+
+
