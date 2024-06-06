@@ -128,6 +128,12 @@
         <button id="statusButton" class="btn btn-lg btn-warning" onclick="window.location.href='https://api.whatsapp.com/send/?phone=+34683249330&text=Yee%20loco,%20estas%20a%20casa?'">Enviar WhatsApp</button>
 
     </div>
+    <div class="container">
+        <h1>Tiempo en Benicarló</h1>
+        <div id="weather" class="weather-info">
+            <p>Cargando el tiempo...</p>
+        </div>
+    </div>
     
 
     <!-- Importar jQuery y Bootstrap JS a través de CDN -->
@@ -141,7 +147,37 @@
         }
     </script>
 
-    
+<script>
+    const apiKey = '50a71452576b4ebab37170324240606'; // Reemplaza con tu API Key de WeatherAPI
+    const city = 'Benicarlo';
+    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=es`;
+
+    async function getWeather() {
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            const weather = document.getElementById('weather');
+
+            if (response.ok) {
+                weather.innerHTML = `
+                    <h2>${data.location.name}</h2>
+                    <p>Temperatura: ${data.current.temp_c}°C</p>
+                    <p>Descripción: ${data.current.condition.text}</p>
+                    <p>Humedad: ${data.current.humidity}%</p>
+                    <p>Viento: ${data.current.wind_kph} km/h</p>
+                    <img src="${data.current.condition.icon}" alt="Icono del tiempo">
+                `;
+            } else {
+                weather.innerHTML = `<p>Error: ${data.error.message}</p>`;
+            }
+        } catch (error) {
+            console.error('Error fetching the weather data:', error);
+            weather.innerHTML = `<p>Error al obtener los datos del tiempo.</p>`;
+        }
+    }
+
+    getWeather();
+</script>
 
 
 </body>
