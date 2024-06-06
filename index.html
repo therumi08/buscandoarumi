@@ -102,4 +102,58 @@
                 transform: scale(1);
                 box-shadow: 0 0 10px green;
             }
-            50
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+                box-shadow: 0 0 20px lightgreen;
+            }
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="./img/logo2.jpeg" alt="Logo" class="logo">
+
+    <div class="container2">
+        <div class="punto-verde"></div>
+        <p>Todos los servicios funcionan con normalidad</p>
+    </div>
+    <br>
+    <div class="container">
+        <button id="statusButton" class="btn btn-lg btn-success">ABIERTO</button>
+    </div>
+
+    <!-- Importar jQuery y Bootstrap JS a través de CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function actualizarEstado() {
+            fetch('/estado.json')
+                .then(response => response.json())
+                .then(data => {
+                    const button = document.getElementById('statusButton');
+                    button.textContent = data.estado;
+                    if (data.estado === 'CERRADO') {
+                        button.classList.remove('btn-success');
+                        button.classList.add('btn-danger');
+                    } else {
+                        button.classList.remove('btn-danger');
+                        button.classList.add('btn-success');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar el estado:', error);
+                });
+        }
+
+        window.onload = actualizarEstado;
+    </script>
+
+</body>
+</html>
