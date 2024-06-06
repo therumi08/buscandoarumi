@@ -78,8 +78,8 @@
             box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
         }
         .punto-verde {
-            width: 15px;
-            height: 15px;
+            width: 10px;
+            height: 10px;
             background-color: green;
             border-radius: 50%;
             margin-right: 10px;
@@ -138,37 +138,37 @@
         }
     </script>
 
-<script>
-    const apiKey = '50a71452576b4ebab37170324240606'; // Reemplaza con tu API Key de WeatherAPI
-    const city = 'Benicarlo';
-    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=es`;
+    <script>
+        const apiKey = '50a71452576b4ebab37170324240606'; // Reemplaza con tu API Key de WeatherAPI
+        const city = 'Benicarlo';
+        const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=es`;
 
-    async function getWeather() {
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            const weather = document.getElementById('weather');
+        async function getWeather() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const weather = document.getElementById('weather');
 
-            if (response.ok) {
-                weather.innerHTML = `
-                    <h2>${data.location.name}</h2>
-                    <p>Temperatura: ${data.current.temp_c}°C</p>
-                    <p>Descripción: ${data.current.condition.text}</p>
-                    <p>Humedad: ${data.current.humidity}%</p>
-                    <p>Viento: ${data.current.wind_kph} km/h</p>
-                    <img src="${data.current.condition.icon}" alt="Icono del tiempo">
-                `;
-            } else {
-                weather.innerHTML = `<p>Error: ${data.error.message}</p>`;
+                if (response.ok) {
+                    weather.innerHTML = `
+                        <h2>${data.location.name}</h2>
+                        <p>Temperatura: ${data.current.temp_c}°C</p>
+                        <p>Descripción: ${data.current.condition.text}</p>
+                        <p>Humedad: ${data.current.humidity}%</p>
+                        <p>Viento: ${data.current.wind_kph} km/h</p>
+                        <img src="${data.current.condition.icon}" alt="Icono del tiempo">
+                    `;
+                } else {
+                    weather.innerHTML = `<p>Error: ${data.error.message}</p>`;
+                }
+            } catch (error) {
+                console.error('Error fetching the weather data:', error);
+                weather.innerHTML = `<p>Error al obtener los datos del tiempo.</p>`;
             }
-        } catch (error) {
-            console.error('Error fetching the weather data:', error);
-            weather.innerHTML = `<p>Error al obtener los datos del tiempo.</p>`;
         }
-    }
 
-    getWeather();
-</script>
+        getWeather();
+    </script>
 
 
 </body>
