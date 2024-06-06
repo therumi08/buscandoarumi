@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Metadatos básicos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Casa Rumi</title>
-
-    <!-- Metadatos avanzados -->
-    <meta name="description" content="Página de administración de Casa Rumi">
-    <meta name="author" content="RomanianWebServices">
-
-    <!-- Favicon -->
-    <link rel="icon" href="./img/logo2.jpeg" type="image/x-icon">
-    
-    <!-- Importar fuentes de Google Fonts -->
+    <title>Panel de Administrador - Casa Rumi</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Importar Bootstrap a través de CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     <style>
         body, html {
             height: 100%;
@@ -29,13 +16,6 @@
             align-items: center;
             background: linear-gradient(135deg, #6e44ff, #b06ab3);
             font-family: 'Montserrat', sans-serif;
-        }
-        .logo {
-            width: 120px;
-            height: auto;
-            margin-bottom: 5rem;
-            border-radius: 50%;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .container {
             text-align: center;
@@ -53,7 +33,7 @@
         }
         h1 {
             margin-bottom: 3rem;
-            font-size: 15px;
+            font-size: 2rem;
             color: #333;
             font-weight: 700;
         }
@@ -74,39 +54,40 @@
 </head>
 <body>
 
-    <img src="./img/logo2.jpeg" alt="Logo" class="logo">
-
     <div class="container">
-        <h1>Estado Actual</h1>
-        <button id="statusButton" class="btn btn-lg btn-success" onclick="changeState()">ABIERTO</button>
+        <h1>Panel de Administrador</h1>
+        <button class="btn btn-lg btn-success" onclick="cambiarEstado('ABIERTO')">ABIERTO</button>
+        <button class="btn btn-lg btn-danger" onclick="cambiarEstado('CERRADO')">CERRADO</button>
     </div>
 
-    <!-- Importar jQuery y Bootstrap JS a través de CDN -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Script para cambiar el estado del botón y enviar un mensaje -->
     <script>
-        function changeState() {
-            var button = document.getElementById('statusButton');
-            if (button.textContent === 'CERRADO') {
-                button.textContent = 'ABIERTO';
-                button.classList.remove('btn-danger');
-                button.classList.add('btn-success');
-            } else {
-                button.textContent = 'CERRADO';
-                button.classList.remove('btn-success');
-                button.classList.add('btn-danger');
-            }
-
-            // Enviar un mensaje a index.html con el nuevo estado del botón
-            window.parent.postMessage({ type: 'estadoBoton', value: button.textContent }, '*');
+        function cambiarEstado(estado) {
+            fetch('https://tu-dominio.vercel.app/api/cambiar-estado', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ estado: estado })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Estado actualizado a ' + estado);
+                } else {
+                    alert('Error al actualizar el estado');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al actualizar el estado');
+            });
         }
     </script>
 
 </body>
 </html>
+
+
 
 
 
